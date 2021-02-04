@@ -25,36 +25,48 @@
               type="text"
               v-bind:value="valueInput"
               v-on:input="handlyInput"
+              v-on:keypress.enter="addTask"
             />
-            <button class="btn" v-in:click="addTask">Add a new task</button>
+            <button class="btn" v-on:click="addTask">Add a new task</button>
           </div>
         </div>
       </div>
       <div class="container">
         <h2>
           <span>To Do</span>
-          <span class="mask-num">10</span>
+          <span class="mask-num">{{ needDoList.length }}</span>
         </h2>
         <ul class="mask-list">
           <li v-for="(mask, index) in needDoList" :key="mask.id">
             <div>
-              <input type="checkbox" />
-              <!-- <span>{{ mask.title }}</span> -->
+              <input type="checkbox" v-on:change="doCheck(index, 'need')" />
+              <span>{{ mask.title }}</span>
             </div>
-            <button class="btn-remove">Remove</button>
+            <button class="btn-remove" v-on:click="removeMask(index, 'need')">
+              Remove
+            </button>
           </li>
         </ul>
         <h2>
           <span>Done</span>
-          <span class="mask-num">10</span>
+          <span class="mask-num">{{ completeList.length }}</span>
         </h2>
         <ul class="mask-list complete-list">
-          <li>
+          <li v-for="(mask, index) in completeList" :key="mask.id">
             <div>
-              <input type="checkbox" checked />
-              <span>Old Task</span>
+              <input
+                type="checkbox"
+                v-on:change="doCheck(index, 'complete')"
+                checked
+              />
+              <span>{{ mask.title }}</span>
             </div>
-            <button class="btn-remove">Remove</button>
+            <button
+              class="btn-remove"
+              v-on:click="removeMask(index, 'complete')"
+            >
+              Remove
+            </button>
           </li>
         </ul>
       </div>
