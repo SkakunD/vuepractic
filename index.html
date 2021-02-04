@@ -16,15 +16,50 @@
     <title>To Do List Vue.js V3</title>
   </head>
   <body>
-    <div class="header">
-      <div class="container">
-        <div class="logo">ToDo List</div>
-        <div class="form">
-          <input type="text" />
-          <button class="btn">Add a new task</button>
+    <div id="app">
+      <div class="header">
+        <div class="container">
+          <div class="logo">ToDo List</div>
+          <div class="form">
+            <input
+              type="text"
+              v-bind:value="valueInput"
+              v-on:input="handlyInput"
+            />
+            <button class="btn" v-in:click="addTask">Add a new task</button>
+          </div>
         </div>
       </div>
+      <div class="container">
+        <h2>
+          <span>To Do</span>
+          <span class="mask-num">10</span>
+        </h2>
+        <ul class="mask-list">
+          <li v-for="(mask, index) in needDoList" :key="mask.id">
+            <div>
+              <input type="checkbox" />
+              <!-- <span>{{ mask.title }}</span> -->
+            </div>
+            <button class="btn-remove">Remove</button>
+          </li>
+        </ul>
+        <h2>
+          <span>Done</span>
+          <span class="mask-num">10</span>
+        </h2>
+        <ul class="mask-list complete-list">
+          <li>
+            <div>
+              <input type="checkbox" checked />
+              <span>Old Task</span>
+            </div>
+            <button class="btn-remove">Remove</button>
+          </li>
+        </ul>
+      </div>
     </div>
+
     <script src="https://unpkg.com/vue@next"></script>
     <script src="app.js"></script>
   </body>
