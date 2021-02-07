@@ -13,66 +13,41 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
     />
     <link rel="stylesheet" href="style.css" />
-    <title>To Do List Vue.js V3</title>
+    <script src="script.js" async></script>
+    <title>To Do List JavaScript</title>
   </head>
   <body>
+    <button class="btn-click"></button>
     <div id="app">
       <div class="header">
         <div class="container">
           <div class="logo">ToDo List</div>
           <div class="form">
-            <input
-              type="text"
-              v-bind:value="valueInput"
-              v-on:input="handlyInput"
-              v-on:keypress.enter="addTask"
-            />
-            <button class="btn" v-on:click="addTask">Add a new task</button>
+            <input type="text" class="input_data_task" />
+            <button class="btn btn_add_task">Add a new task</button>
           </div>
         </div>
       </div>
       <div class="container">
         <h2>
-          <span>To Do</span>
-          <span class="mask-num">{{ needDoList.length }}</span>
+          <span id="spaN">To Do</span>
+          <span class="mask-num mask-num-todo"></span>
         </h2>
-        <ul class="mask-list">
-          <li v-for="(mask, index) in needDoList" :key="mask.id">
-            <div>
-              <input type="checkbox" v-on:change="doCheck(index, 'need')" />
-              <span>{{ mask.title }}</span>
-            </div>
-            <button class="btn-remove" v-on:click="removeMask(index, 'need')">
-              Remove
-            </button>
-          </li>
-        </ul>
+        <ul class="mask-list mask-list-todo"></ul>
         <h2>
           <span>Done</span>
-          <span class="mask-num">{{ completeList.length }}</span>
+          <span class="mask-num mask-num-done"></span>
         </h2>
         <ul class="mask-list complete-list">
-          <li v-for="(mask, index) in completeList" :key="mask.id">
+          <li>
             <div>
-              <input
-                type="checkbox"
-                v-on:change="doCheck(index, 'complete')"
-                checked
-              />
-              <span>{{ mask.title }}</span>
+              <input type="checkbox" checked />
+              <span></span>
             </div>
-            <button
-              class="btn-remove"
-              v-on:click="removeMask(index, 'complete')"
-            >
-              Remove
-            </button>
+            <button class="btn-remove">Remove</button>
           </li>
         </ul>
       </div>
     </div>
-
-    <script src="https://unpkg.com/vue@next"></script>
-    <script src="app.js"></script>
   </body>
 </html>
